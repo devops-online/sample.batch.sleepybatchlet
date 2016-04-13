@@ -6,6 +6,6 @@
 
     <httpEndpoint id="defaultHttpEndpoint"
                   host="*"
-                  httpPort="9080"
-                  httpsPort="9063"/>
+                  httpPort="80"
+                  httpsPort="443"/>
 </server>
