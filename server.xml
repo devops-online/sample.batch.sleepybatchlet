@@ -4,6 +4,8 @@
 		<feature>batch-1.0</feature>
 	</featureManager>
 
+    <application name='myapp' location='SleepyBatchletSample-1.0.war' type='war' context-root='/'/>
+
     <httpEndpoint id="defaultHttpEndpoint"
                   host="*"
                   httpPort="80"
