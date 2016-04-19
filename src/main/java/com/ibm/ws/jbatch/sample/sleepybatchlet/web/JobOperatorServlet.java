@@ -41,11 +41,11 @@ import javax.batch.runtime.Metric;
 import javax.batch.runtime.StepExecution;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 
 /**
  * This servlet is a simple wrapper around the JobOperator API.
@@ -191,20 +191,60 @@ public class JobOperatorServlet extends HttpServlet {
 
         JobInstance jobInstance = jobOperator.getJobInstance(execId);
         JobExecution jobExecution = jobOperator.getJobExecution(execId);
+        
+        ServletOutputStream stream = null;
+        stream = response.getOutputStream();
+        StringBuffer strBuffer = new StringBuffer();
+        
+        strBuffer.append("<XML><jobName>").append(jobXMLName).append("</jobName>");
+        strBuffer.append("<Parameters><Name>sleep.time.seconds</Name><Value>300</Value></Parameters>");
+        strBuffer.append("<Status>Job started</Status>");
+        strBuffer.append("<InstanceID>").append(jobInstance.getInstanceId()).append("</InstanceID>");
+        strBuffer.append("<ExecutionID>").append(jobExecution.getExecutionId()).append("</ExecutionID>");
+        strBuffer.append("<batchStatus>").append(jobExecution.getBatchStatus()).append("</batchStatus>");
+        strBuffer.append("<startTime>").append(jobExecution.getStartTime()).append("</startTime>");
+        strBuffer.append("<endTime>").append(jobExecution.getEndTime()).append("</endTime>");
+        strBuffer.append("</XML>");
+        stream.write(strBuffer.toString().getBytes());
+        
+        if(stream != null)
+        {
+        	stream.close();
+        }
+       
 
-        getResponseWriter().setHttpServletResponse( response )
+        response.setContentType("text/xml");
+       /* getResponseWriter().setHttpServletResponse( response )
+        
                            .beginResponse(HttpServletResponse.SC_OK)
-                           .println( "<response><jobname>" + jobXMLName + "</jobname><id>" + String.valueOf(execId) + "</id><status>STARTING</status></response>" )
-                           .endResponse();
-
-/*
-        getResponseWriter().setHttpServletResponse( response )
-                           .beginResponse(HttpServletResponse.SC_OK)
+                           .println("<XML><jobName>" + jobXMLName + "</jobName>")
+                           .println("<Parameters><Name>sleep.time.seconds<Name><Value>300</Value><Parameters>")
+                           .println("<Status>Job started</Status>")
+                           
+                           .println("<InstanceID>"+ jobInstance.getInstanceId()+"</InstanceID>")
+                           .println("<ExecutionID>"+jobExecution.getExecutionId()+"</ExecutionID>")
+                           .println("<batchStatus>"+jobExecution.getBatchStatus()+"</batchStatus>")
+                           .println("<startTime>"+jobExecution.getStartTime()+ "</startTime>")
+                           .println("<endTime>"+ jobExecution.getEndTime()+"</endTime>").endResponse();
                            .println( "start(jobXMLName=" + jobXMLName + ", jobParameters=" + jobParameters + "): Job started!" )
                            .printJobInstance( jobInstance )
                            .printJobExecution( jobExecution )
-                           .endResponse();
-  */
+                           .endResponse();*/
+        
+        /*<XML>
+        <jobName>sleepy-batchlet</jobName>
+        <Parameters>
+          <Name>sleep.time.seconds</Name>
+          <value>300</Value>
+        </Parameters>
+        <Status>Job Started</Status>
+        <InstanceID>9</InstanceID>
+        <ExecutionID>8</ExecutionID>
+        <batchStatus>STARTING</batchStatus>
+        <startTime></startTime>
+        <endTime></endTime>
+        </XML>*/
+
     }
 
     /**
