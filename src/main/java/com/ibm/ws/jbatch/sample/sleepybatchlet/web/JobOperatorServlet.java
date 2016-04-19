@@ -194,7 +194,7 @@ public class JobOperatorServlet extends HttpServlet {
 
         getResponseWriter().setHttpServletResponse( response )
                            .beginResponse(HttpServletResponse.SC_OK)
-                           .println( "<response><jobname>" + jobXMLName + "</jobname><instance>" + jobInstance + "</instance><status> STARTED </status></response>" )
+                           .println( "<response><jobname>" + jobXMLName + "</jobname><id>" + execId + "</id><status>STARTING</status></response>" )
                            .endResponse();
 
 /*
