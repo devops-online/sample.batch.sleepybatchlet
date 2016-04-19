@@ -209,7 +209,7 @@ public class JobOperatorServlet extends HttpServlet {
                            .startElement("status")
                            .characters( jobInstance )
                            .endElement("status")
-                           .endElement("response");
+                           .endElement("response")
                            .endDocument();
 /*
         getResponseWriter().setHttpServletResponse( response )
