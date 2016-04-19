@@ -2,7 +2,7 @@ applications:
 - name: sleepybatchlet
   host: sleepybatchlet
   disk: 1024M
-  path: SleepyBatchletSample-1.0.war
+  path: target/SleepyBatchletSample-1.0.war
   domain: mybluemix.net
   memory: 512M
   instances: 1
