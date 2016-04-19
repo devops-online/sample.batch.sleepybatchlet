@@ -46,6 +46,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.XMLReader;
+import org.xml.sax.helpers.AttributesImpl;
+import org.xml.sax.helpers.NamespaceSupport;
+import org.xml.sax.helpers.XMLFilterImpl;
+import org.xml.sax.ext.LexicalHandler;
+
 /**
  * This servlet is a simple wrapper around the JobOperator API.
  *
@@ -130,6 +138,8 @@ public class JobOperatorServlet extends HttpServlet {
             return (responseWriter = new TextWriter());
         } else if ( acceptHeader.contains("text/html") ) {
             return (responseWriter = new HtmlWriter());
+        } else if ( acceptHeader.contains("text/xml") ) {
+            return (responseWriter = new XMLWriter());    
         } else {
             return (responseWriter = new TextWriter());
         }
@@ -191,12 +201,24 @@ public class JobOperatorServlet extends HttpServlet {
         JobInstance jobInstance = jobOperator.getJobInstance(execId);
         JobExecution jobExecution = jobOperator.getJobExecution(execId);
 
+        getResponseWriter().startDocument()
+                           .startElement("response")
+                           .startElement("instance")
+                           .characters( jobInstance )
+                           .endElement("instance")
+                           .startElement("status")
+                           .characters( jobInstance )
+                           .endElement("status")
+                           .endElement("response");
+                           .endDocument();
+/*
         getResponseWriter().setHttpServletResponse( response )
                            .beginResponse(HttpServletResponse.SC_OK)
                            .println( "start(jobXMLName=" + jobXMLName + ", jobParameters=" + jobParameters + "): Job started!" )
                            .printJobInstance( jobInstance )
                            .printJobExecution( jobExecution )
                            .endResponse();
+  */
     }
 
     /**
