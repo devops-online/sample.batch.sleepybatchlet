@@ -68,19 +68,19 @@ $ curl 'http://<bluemix_app_url>/joboperator?action=start&jobXMLName=sleepy-batc
   <endTime>null</endTime>
 </XML>
 
-$ curl 'http://<bluemix_app_url>/SleepyBatchletSample-1.0/joboperator?action=status&executionId=1'
+$ curl 'http://<bluemix_app_url>/joboperator?action=status&executionId=1'
 
-$ curl 'http://<bluemix_app_url>/SleepyBatchletSample-1.0/joboperator?action=start&jobXMLName=sleepy-batchlet&jobParameters=sleep.time.seconds=32'
+$ curl 'http://<bluemix_app_url>/joboperator?action=start&jobXMLName=sleepy-batchlet&jobParameters=sleep.time.seconds=32'
 
-$ curl 'http://<bluemix_app_url>/SleepyBatchletSample-1.0/joboperator?action=status&executionId=2'
+$ curl 'http://<bluemix_app_url>/joboperator?action=status&executionId=2'
 
-$ curl 'http://<bluemix_app_url>/SleepyBatchletSample-1.0/joboperator?action=stop&executionId=2'
+$ curl 'http://<bluemix_app_url>/joboperator?action=stop&executionId=2'
 
-$ curl 'http://<bluemix_app_url>/SleepyBatchletSample-1.0/joboperator?action=status&executionId=2'
+$ curl 'http://<bluemix_app_url>/joboperator?action=status&executionId=2'
 
-$ curl 'http://<bluemix_app_url>/SleepyBatchletSample-1.0/joboperator?action=restart&executionId=2&restartParameters=sleep.time.seconds=10'
+$ curl 'http://<bluemix_app_url>/joboperator?action=restart&executionId=2&restartParameters=sleep.time.seconds=10'
 
-$ curl 'http://<bluemix_app_url>/SleepyBatchletSample-1.0/joboperator?action=status&executionId=2'
+$ curl 'http://<bluemix_app_url>/joboperator?action=status&executionId=2'
 
 ```
 
