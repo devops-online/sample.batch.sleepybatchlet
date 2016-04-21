@@ -1,7 +1,7 @@
 #SleepyBatchlet sample for batch-1.0 on Liberty (Bluemix)
 
 SleepyBatchlet is a simple sample batchlet for use with feature batch-1.0 on WebSphere Liberty Profile.
-batch-1.0 is Liberty's implementation of the Batch Programming Model in Java EE 7, as specified by JSR 352.
+batch-1.0 is Liberty's implementation of the Batch Programming Model in Java EE 7, as specified by JSR-352.
 
 The batchlet itself is rather uninteresting. All it does is sleep in 1 second increments for a default time
 of 15 seconds.  The sleep time is configurable via batch property *sleep.time.seconds*.  The batchlet
