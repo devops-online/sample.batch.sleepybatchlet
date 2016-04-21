@@ -7,7 +7,7 @@ The batchlet itself is rather uninteresting. All it does is sleep in 1 second in
 of 15 seconds.  The sleep time is configurable via batch property *sleep.time.seconds*.  The batchlet
 prints a message to System.out each second, so you can easily verify that it's running.
 
-##Build the sample
+##Build the sample (TO BE UPDATED TO THE BLUEMIX STEPS)
 
 For your convenience, the sample application has already been built: SleepyBatchletSample-1.0.war.
 
